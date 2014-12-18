@@ -1,0 +1,5 @@
+#include "channel.h"
+#include "../bufchannel/bufchannel.h"
+#include "../syncchannel/syncchannel.h"
+
+using namespace std;
