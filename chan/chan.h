@@ -3,8 +3,7 @@
 
 #include <memory>   // shared_ptr
 #include <utility>  // pair
-
-template<typename T> class Channel;
+#include "../channel/channel.h"
 
 template<typename T>
 class chan {
@@ -23,5 +22,11 @@ class chan {
         chan<T> &operator>>(T &&);
         std::pair<bool, T> operator~();
 };
+
+#include "chan.f"
+#include "size.f"
+#include "operatorll.f"
+#include "operatorrr.f"
+#include "operator~.f"
 
 #endif
