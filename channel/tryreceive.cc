@@ -7,10 +7,13 @@ bool Channel<T>::try_receive(T &result) {
     ++d_receivers_present;
 
     d_senders.notify_all();         // Notify senders I'm here
+
     ul.unlock();
     this_thread::yield();
     ul.lock();
+
     if (size() == 0) {
+        --d_receivers_present;
         return false;
     }
     // Locked; there is an item
@@ -18,5 +21,5 @@ bool Channel<T>::try_receive(T &result) {
     result = move(front());         // Take the item
     pop_front();
     --d_receivers_present;
-    return result;
+    return true;
 }
