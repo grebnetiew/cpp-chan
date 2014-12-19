@@ -62,4 +62,4 @@ After a channel has been closed, sending to it will generate an exception. This 
 This is the implementation. You are not expected to interact with it.
 This class is* exception-safe: operations that throw exceptions will not otherwise affect the objects involved.
 
-*) This means: if you notice that this is not true, that is a bug. Please inform me.
+*) This means: I've tried to do this right, but if you notice that this is not true, that is a bug. Please inform me.
