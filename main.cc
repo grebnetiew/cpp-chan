@@ -1,7 +1,7 @@
 #include <thread>
 #include <iostream>
 #include <chrono>
-#include "chan.H"
+#include "chan/chan.h"
 using namespace std;
 
 void work(chan<int> out) {
