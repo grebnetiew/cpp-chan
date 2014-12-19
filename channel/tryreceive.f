@@ -9,7 +9,7 @@ bool Channel<T>::try_receive(T &result) {
         std::this_thread::yield();
         ul.lock();
 
-        if (size() == 0) {
+        if (size() == 0) {                      // this block:
             --d_receivers_present;              // within try, but can't throw
             return false;
         }
@@ -17,7 +17,7 @@ bool Channel<T>::try_receive(T &result) {
 
         auto storage = std::unique_ptr<std::deque<T>>::get();
         result = std::move(storage->front());   // Take the item
-        storage->pop_front();
+        storage->pop_front();                   // has nothrow
         --d_receivers_present;
         return true;
     } catch (...) {
