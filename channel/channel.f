@@ -1,5 +1,3 @@
-#include "channel.ih"
-
 template<typename T>
 Channel<T>::Channel():
     unique_ptr<deque<T>>(new deque<T>()),

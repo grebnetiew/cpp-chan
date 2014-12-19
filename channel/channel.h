@@ -2,9 +2,9 @@
 #define INCLUDED_CHANNEL_
 
 #include <memory>
-#include <condition_variable>
-#include <mutex>
 #include <deque>
+#include <mutex>
+#include <condition_variable>
 
 template<typename T>
 class Channel: private std::unique_ptr<std::deque<T>> {
@@ -23,5 +23,11 @@ class Channel: private std::unique_ptr<std::deque<T>> {
         T receive();
         bool try_receive(T &val);
 };
+
+#include "channel.f"
+#include "size.f"
+#include "send.f"
+#include "receive.f"
+#include "tryreceive.f"
 
 #endif

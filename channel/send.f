@@ -1,5 +1,3 @@
-#include "channel.ih"
-
 template<typename T>
 void Channel<T>::send(T const &element) {
     unique_lock<mutex> ul(d_mutex);
