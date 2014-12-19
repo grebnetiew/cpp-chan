@@ -38,7 +38,7 @@ To store something,
 To receive something,
 
     int result;
-    chToworker >> result;
+    chToWorker >> result;
 
 If you don't want to block if the channel isn't being sent to, use the conditional receive operator. It returns a pair of `bool` and the channel's type. If the former is `true`, you received an object as the second element. If the first is `false`, there was nothing to receive, and the second element is default-constructed.
 
