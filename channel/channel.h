@@ -7,8 +7,7 @@
 #include <mutex>
 
 template<typename T>
-class Channel: private std::unique_ptr<std::deque<T>>
-{
+class Channel: private std::unique_ptr<std::deque<T>> {
     size_t d_cap;
     size_t d_receivers_present = 0;
     std::mutex d_mutex;

@@ -6,8 +6,7 @@
 class channel;
 
 template<typename T>
-class chan
-{
+class chan {
     // The insertion operator sends values over the channel
     friend chan<T> &operator<<(chan<T> ch, T const &val);
     // The extraction operator receives them
