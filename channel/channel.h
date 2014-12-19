@@ -1,7 +1,6 @@
 #ifndef INCLUDED_CHANNEL_
 #define INCLUDED_CHANNEL_
 
-#include <deque>
 #include <memory>
 #include <condition_variable>
 #include <mutex>

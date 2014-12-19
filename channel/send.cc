@@ -11,8 +11,8 @@ void Channel<T>::send(T const &element) {
     }
     // Locked; receiver is present and waiting, 
     // Only sender awake is me
-
-    push_back(element);                     // Give item
+                                            // Give item
+    unique_ptr<deque<T>>::get()->push_back(element);
     ul.unlock();
 
     d_receivers.notify_all();               // Tell receiver to come get it
