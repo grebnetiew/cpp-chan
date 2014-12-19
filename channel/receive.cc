@@ -5,6 +5,7 @@ T Channel<T>::receive() {
     unique_lock<mutex> ul(d_mutex);
     ++d_receivers_present;
 
+    d_senders.notify_all();         // Notify senders I'm here
     while (size() == 0) {           // Wait until item
         d_receivers.wait(ul);
     }
@@ -13,8 +14,5 @@ T Channel<T>::receive() {
     T result(move(front()));        // Take the item
     pop_front();
     --d_receivers_present;
-    ul.unlock();
-
-    d_senders.notify_all();         // Notify senders there's space again
     return result;
 }
