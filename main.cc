@@ -13,7 +13,7 @@ void work(chan<int> out) {
 
 int main() {
     chan<int> ch;   // synchronous
-    thread worker(work, ref(ch));
+    thread worker(work, ch);
 
     for(size_t i = 0; i != 5; ++i) {
         int output;
@@ -21,12 +21,11 @@ int main() {
         cout << "Received a " << output << '\n';
     }
 
-    auto conditionalInt(~ch);
-    if (conditionalInt.first){
-        cout << "WTF? There is still a " << conditionalInt.second << '\n';
-    } else {
-        cout << "No more ints...\n";
+    pair<bool, int> conditionalInt{false, -1};
+    while (!(conditionalInt = ~ch).first) {
+        this_thread::yield();
     }
+    cout << "Received finally a " << conditionalInt.second << '\n';
 
     worker.join();
 }
