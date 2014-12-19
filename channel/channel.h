@@ -5,6 +5,7 @@
 #include <deque>
 #include <mutex>
 #include <condition_variable>
+#include <thread>   // in try_receive
 
 template<typename T>
 class Channel: private std::unique_ptr<std::deque<T>> {
