@@ -1,0 +1,11 @@
+*.aux
+*.log
+*.asv
+*.bak
+*.bbl
+*.blg
+*.out
+*.o
+~$*
+desktop.ini
+main
