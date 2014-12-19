@@ -7,13 +7,6 @@ class channel;
 
 template<typename T>
 class chan {
-    // The insertion operator sends values over the channel
-    friend chan<T> &operator<<(chan<T> ch, T const &val);
-    // The extraction operator receives them
-    friend chan<T> &operator>>(chan<T> ch, T &val);
-    //friend chan<T> &operator>>(chan<T> ch, std::pair<bool, T> &conditional_val) noexcept;
-    friend chan<T> &operator>>(chan<T> ch, T &&);
-
     std::shared_ptr<Channel<T>> d_impl;
     
     public:
@@ -22,7 +15,12 @@ class chan {
         chan(chan<T> const &other) = default;
 
         size_t size() const;
-        T &&operator~(chan<T> &ch);     // Shortcut/alias for >>
+        // The insertion operator sends values over the channel
+        chan<T> &operator<<(T const &val);
+        // The extraction operator receives them
+        chan<T> &operator>>(T &val);
+        chan<T> &operator>>(T &&);
+        std::pair<bool, T> &conditional_val &&operator~(chan<T> &ch);
 };
 
 #endif

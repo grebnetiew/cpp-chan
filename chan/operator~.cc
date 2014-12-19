@@ -2,5 +2,6 @@
 
 template<typename T>
 T &&operator~(chan<T> &ch) {
-    return ch.d_impl->receive();
+    T result;
+    return pair(this->d_impl->try_receive(result), result);
 }
