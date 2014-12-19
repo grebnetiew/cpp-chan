@@ -4,6 +4,7 @@
 #include <memory>
 #include <condition_variable>
 #include <mutex>
+#include <deque>
 
 template<typename T>
 class Channel: private std::unique_ptr<std::deque<T>> {
