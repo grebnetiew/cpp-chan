@@ -44,6 +44,8 @@ int main() {
 
     // get results
     for (size_t i = 0; i != 10; ++i) {
+        cout << "Houses ready: " << ch4.size() << '\n';
+
         string result;
         ch4 >> result;
         cout << result;
