@@ -4,6 +4,9 @@ void Channel<T>::send(T const &element) {
 
     if (d_cap == 0 || size() >= d_cap) {    // We need to block until a receive
         while (d_receivers_present == 0) {
+            if (!d_open) {
+                throw ClosedException();
+            }
             d_senders.wait(ul);
         }
     }

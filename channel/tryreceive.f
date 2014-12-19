@@ -9,7 +9,7 @@ bool Channel<T>::try_receive(T &result) {
         std::this_thread::yield();
         ul.lock();
 
-        if (size() == 0) {                      // this block:
+        if (size() == 0 || !d_open) {           // this block:
             --d_receivers_present;              // within try, but can't throw
             return false;
         }

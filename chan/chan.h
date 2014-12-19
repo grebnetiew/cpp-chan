@@ -20,7 +20,10 @@ class chan {
         // The extraction operator receives them
         chan<T> &operator>>(T &val);
         chan<T> &operator>>(T &&);
+        // Conditional extraction operator doesn't block
         std::pair<bool, T> operator~();
+        // Closes the channel and excepts interacting threads
+        void close();
 };
 
 #include "chan.f"
@@ -28,5 +31,6 @@ class chan {
 #include "operatorll.f"
 #include "operatorrr.f"
 #include "operator~.f"
+#include "close.f"
 
 #endif
