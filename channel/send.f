@@ -1,6 +1,6 @@
 template<typename T>
 void Channel<T>::send(T const &element) {
-    unique_lock<mutex> ul(d_mutex);
+    std::unique_lock<std::mutex> ul(d_mutex);
 
     if (d_cap == 0 || size() >= d_cap) {    // We need to block until a receive
         while (d_receivers_present == 0) {
@@ -10,7 +10,7 @@ void Channel<T>::send(T const &element) {
     // Locked; receiver is present and waiting, 
     // Only sender awake is me
                                             // Give item
-    unique_ptr<deque<T>>::get()->push_back(element);
+    std::unique_ptr<std::deque<T>>::get()->push_back(element);
     ul.unlock();
 
     d_receivers.notify_all();               // Tell receiver to come get it

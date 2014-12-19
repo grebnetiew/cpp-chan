@@ -19,7 +19,7 @@ class Channel: private std::unique_ptr<std::deque<T>> {
         Channel();
         explicit Channel(size_t capacity);
 
-        using std::unique_ptr<std::deque<T>>::size;
+        size_t size() const;
         void send(T const &element);
         T receive();
         bool try_receive(T &val);
