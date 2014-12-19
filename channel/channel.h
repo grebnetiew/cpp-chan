@@ -21,6 +21,7 @@ class Channel: private std::unique_ptr<std::deque<T>> {
         using std::unique_ptr<std::deque<T>>::size;
         void send(T const &element);
         T receive();
+        bool try_receive(T &val);
 };
 
 #endif
