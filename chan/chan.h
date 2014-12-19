@@ -3,7 +3,8 @@
 
 #include <memory>   // shared_ptr
 #include <utility>  // pair
-class channel;
+
+template<typename T> class Channel;
 
 template<typename T>
 class chan {
@@ -20,7 +21,7 @@ class chan {
         // The extraction operator receives them
         chan<T> &operator>>(T &val);
         chan<T> &operator>>(T &&);
-        std::pair<bool, T> operator~(chan<T> &ch);
+        std::pair<bool, T> operator~();
 };
 
 #endif

@@ -1,7 +1,7 @@
 #include "chan.ih"
 
 template<typename T>
-pair<bool, T> operator~(chan<T> &ch) {
+pair<bool, T> chan<T>::operator~() {
     T result;
-    return pair(this->d_impl->try_receive(result), result);
+    return pair<bool, T>(this->d_impl->try_receive(result), result);
 }
