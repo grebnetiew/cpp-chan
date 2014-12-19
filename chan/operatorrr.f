@@ -1,11 +1,11 @@
 template<typename T>
 chan<T> &chan<T>::operator>>(T &val) {
-    val = this->d_impl->receive();
+    this->d_impl->receive(val);
     return *this;
 }
 
 template<typename T>
 chan<T> &chan<T>::operator>>(T &&) {
-    this->d_impl->receive();
+    this->d_impl->receive(T());
     return *this;
 }
