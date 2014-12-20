@@ -1,5 +1,5 @@
 template<typename T>
-void waitForSenders(std::unique_lock<std::mutex> &ul) {
+void Channel<T>::waitForSenders(std::unique_lock<std::mutex> &ul) {
     d_senders.notify_all();                 // Notify senders I'm here
     while (size() == 0) {                   // Wait until item
         if (!d_open) {
