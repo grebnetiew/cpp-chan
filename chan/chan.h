@@ -10,8 +10,7 @@ class chan {
     std::shared_ptr<Channel<T>> d_impl;
     
     public:
-        chan();
-        explicit chan(size_t capacity);
+        explicit chan(size_t capacity = 0);
         chan(chan<T> const &other) = default;
 
         size_t size() const;
