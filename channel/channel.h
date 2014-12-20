@@ -18,14 +18,13 @@ class Channel: private std::unique_ptr<std::deque<T>> {
     std::condition_variable d_receivers;
 
     public:
-        Channel();
         explicit Channel(size_t capacity);
 
         size_t size() const;
         void send(T const &element);
         void receive();
-        void receive(T &result);
-        bool try_receive(T &result);
+        void receive(T *result = nullptr);
+        bool try_receive(T *result);
         void close();
 
         class ClosedException: public std::exception {
@@ -33,6 +32,10 @@ class Channel: private std::unique_ptr<std::deque<T>> {
                 return "Interacting with a closed channel";
             }
         };
+
+    private:
+        void waitForSenders(std::unique_lock<std::mutex> &ul);
+        void moveElement(T *result);
 };
 
 #include "channel.f"
@@ -41,5 +44,7 @@ class Channel: private std::unique_ptr<std::deque<T>> {
 #include "receive.f"
 #include "tryreceive.f"
 #include "close.f"
+#include "waitforsenders.f"
+#include "moveelement.f"
 
 #endif
